@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <script src="./scripts/index.js"></script>
+    <meta charset="UTF-8">
+    <title>Hammer Simulator</title>
+
+    <style>
+        @font-face {
+            font-family: 'OldFont';
+            src: url('./fonts/PlainGermanica.ttf');
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        #upgradeshopopenbutton:hover{
+            cursor: pointer;
+        }
+
+        /*startscreen*/
+
+        #uberschrifttt{
+            position: absolute;
+            font-size: 100px;
+            width: 100%;
+            top:200%;
+            text-align: center;
+            color: rgb(255, 217, 0);
+            font-family: "OldFont";
+            text-decoration: underline;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: +1;
+            opacity: 0;
+        }
+
+        #startbutton:hover{
+            background-color: rgb(66, 42, 11);
+            cursor: pointer;
+        }
+
+        #startbuttonnew:hover{
+            background-color: rgb(66, 42, 11);
+            cursor: pointer;
+        }
+
+        #startbutton{
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            top: 200%;
+            left: calc(50% - 150px);
+            background-color: rgb(98, 63, 17);
+            color: white;
+            font-family: "OldFont";
+            font-size: 300%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-color: black;
+            box-shadow: black 0px 0px 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: 1;
+            opacity: 0;
+        }
+
+
+        #startbuttonnew{
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            top: 200%;
+            left: calc(50% - 150px);
+            background-color: rgb(98, 63, 17);
+            color: white;
+            font-family: "OldFont";
+            font-size: 300%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-color: black;
+            box-shadow: black 0px 0px 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        #byme{
+            position: absolute;
+            top:205%;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: +1;
+            opacity: 0;
+        }
+
+        #copy{
+            position: absolute;
+            top:205%;
+            left:95%;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: +1;
+            opacity: 0;
+        }
+
+        *{
+            margin: 0;
+        }
+
+        #areyousure{
+            position: absolute;
+            z-index: +2;
+            width: 700px;
+            height: 450px;
+            background-color: darkred;
+            border: 5px solid rgb(93, 0, 0);
+            top: 200%;
+            left: calc(50% - 350px);
+        }
+
+        #noloadgame{
+            position: absolute;
+            z-index: +2;
+            width: 700px;
+            height: 450px;
+            background-color: darkred;
+            border: 5px solid rgb(93, 0, 0);
+            top: 200%;
+            left: calc(50% - 350px);
+        }
+
+        #forttfahren:hover{
+            cursor: pointer;
+        }
+
+        #abbrechen:hover{
+            cursor: pointer;
+        }
+
+        #OK:hover{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body style="background-image: url(./grafik/background.jpg); background-color: black; background-size: 100%; background-repeat: no-repeat; overflow: hidden; margin: 0;">
+    
+    <div id="startscreenback" style="position: absolute; width: 100%; height: 1080px; z-index: +1; background-image: url(./grafik/startsscreen.jpg); background-size: 100%; background-repeat: no-repeat; margin: 0; left: 0%; top: 200%; opacity: 0;"></div>
+    <button onclick="loadgame()" id="startbutton">Load Game</button>
+    <button onclick="newgame()" id="startbuttonnew">New Game</button>
+    <p id="byme">By TheMinecrafter05</p>
+    <p id="copy">© 2020</p>
+    <div id="uberschrifttt">Hammer Simulator</div>
+    <div id="blackimage" style="width: 100%; height: 100%; background-color: black; position: absolute; top:200%; left:0%; opacity: 0; z-index: +100;"></div>
+    
+    <div id="areyousure">
+        <p style="color: white; font-size: 30px; width: 100%; text-align: center; margin-top: 2%; user-select: none; -webkit-user-select: none;">Bist du Sicher? Dein kompletter Fortschritt wird gelöscht.</p>
+        <button id="forttfahren" style="
+            position: absolute;
+            width: 150px;
+            height: 75px;
+            top: 30%;
+            left: calc(50% - 90px);
+            background-color: rgb(98, 63, 17);
+            color: white;
+            font-size: 150%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-color: black;
+            box-shadow: black 0px 0px 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: 1;" onclick="document.getElementById('areyousure').style.top = '200%'; reset(); play()">Fortfahren</button>
+        <button id="abbrechen" style="
+        position: absolute;
+        width: 150px;
+        height: 75px;
+        top: 60%;
+        left: calc(50% - 90px);
+        background-color: rgb(98, 63, 17);
+        color: white;
+        font-size: 150%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-color: black;
+        box-shadow: black 0px 0px 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 1;" onclick="document.getElementById('areyousure').style.top = '200%'">Abrechen</button>
+    </div>
+
+    <div id="noloadgame">
+        <p style="color: white; font-size: 30px; width: 100%; text-align: center; margin-top: 2%; user-select: none; -webkit-user-select: none;">Es ist noch kein Spiel gespeichert worden. Erstelle ein neues, indem du auf "New Game" drückst</p>
+    
+        <button id="OK" style="
+        position: absolute;
+        width: 150px;
+        height: 75px;
+        top: 60%;
+        left: calc(50% - 90px);
+        background-color: rgb(98, 63, 17);
+        color: white;
+        font-size: 150%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-color: black;
+        box-shadow: black 0px 0px 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 1;" onclick="document.getElementById('noloadgame').style.top = '200%'">OK</button>
+    </div>
+    
+    <h1 style="font-family: OldFont; left: calc(50% - 222px); font-size: 50px; position: absolute; color:yellow; user-select: none; -webkit-user-select: none; text-shadow: black 0px 20px 7px;">Hammer Simulator</h1>
+    <img src="./nagel/nagel.png" id="nagelimage" style="width: 100px; height: 100px; position: absolute; left: calc(50% - 100px); top: 61%; user-select: none; -webkit-user-select: none;">
+    <img src="./event/nagelHOT.png" id="nagelimage" style="width: 100px; height: 100px; position: absolute; left: calc(50% - 100px); top: 61%; user-select: none; -webkit-user-select: none; opacity: 0;">
+    <img src="./hammers/fullhammer/hammer.png" onclick="hammerpress()" id="hammerimage" style="width: 500px; height: 500px; position: absolute; left: calc(50% - 80px); top: 30.7%; user-select: none; -webkit-user-select: none;">
+    <img src="./event/hammerHOT.png" onclick="hammerpress()" id="hammerimageHOT" style="width: 500px; height: 500px; position: absolute; left: calc(50% - 80px); top: 30.7%; user-select: none; -webkit-user-select: none; opacity: 0;">
+    <p id="punshtext" style="font-family: OldFont; color: turquoise; position: absolute; top: 60%; left: calc(50% - 350px); font-size: 35px; border: 2px solid teal; border-top: 0px; border-left: 0px; border-right: 0px; user-select: none; -webkit-user-select: none; text-shadow: black 40px -65px 5px;">Schläge: 20</p>
+
+
+    <div id="upgradeshop" style="background-color: tomato; width: 45%; height: 100%; position: absolute; left: 100%; top: 0%; border: rgb(209, 55, 28) solid 6px">
+        <button id="upgradeshopopenbutton" onclick="openupgradeshop()" style="width: 20%; height: 7%; background-color: rgb(209, 55, 28); transform: rotate(90deg); position: absolute; left: -13%; top: 40%; user-select: none; -webkit-user-select: none;">Upgrade Shop</button>
+        
+        <p id="speedtext" style="color: white; margin-top:10px; margin-left: 10px; user-select: none; -webkit-user-select: none;">Geschwindigkeit: 0</p>
+        <p id="weighttext" style="color: white; position: absolute; margin-top:10px; top: 0%; margin-left: 41%; user-select: none; -webkit-user-select: none;">Gewicht: 20</p>
+        <p id="strengtext" style="color: white; position: absolute; margin-top:10px; top: 0%; margin-left: 75%; user-select: none; -webkit-user-select: none;">Stärke: 1</p>
+
+        <button onclick="upspeed()" id="speedupbutton" style="width: 200px; height: 70px; color: yellow; font-size: 20px; background-image: url(./hammers/upgradeshopimages/griff.png); background-repeat: no-repeat; background-size: 100%; margin-left: 20px; margin-top: 100px; user-select: none; -webkit-user-select: none; background-color: transparent; border: none;">Upgrade Griff (5)</button>
+
+        <button onclick="upweight()" id="weightupbutton" style="width: 200px; height: 70px; color: blue; font-size: 20px; background-image: url(./hammers/upgradeshopimages/metall.png); background-repeat: no-repeat; background-size: 100%; margin-left: 20px; position: absolute; top: 40%; left: 0%; user-select: none; -webkit-user-select: none; background-color: transparent; border: none;">Upgrade Mettal (8)</button>
+
+        <button onclick="upstreng()" id="strengupbutton" style="width: 200px; height: 70px; color: yellow; font-size: 20px; background-image: url(./hammers/upgradeshopimages/kopf.png); background-repeat: no-repeat; background-size: 100%; margin-left: 20px; position: absolute; top: 60%; left: 0%; user-select: none; -webkit-user-select: none; background-color: transparent; border: none;">Upgrade Stärke (11)</button>
+
+        <button onclick="buyautohammer()" id="autohammerbutton" style="width: 200px; height: 70px; color: rgb(255, 255, 141); font-size: 20px; background-image: url(./hammers/upgradeshopimages/autohammer.png); background-repeat: no-repeat; background-size: 100%; margin-left: 20px; position: absolute; top: 80%; left: calc(50% - 170px); user-select: none; -webkit-user-select: none; background-color: transparent; border: none;">Auto Hammer (500)</button>
+
+        <button onclick="activateautohammer()" style="width: 200px; height: 70px; color: yellow; font-size: 20px; background-image: url(./hammers/upgradeshopimages/autohammerON.png); background-repeat: no-repeat; background-size: 100%; margin-left: 20px; position: absolute; top: 80%; left: 0%; user-select: none; -webkit-user-select: none; border: none;">Auto Hammer (ON)</button>
+
+        <button onclick="stopautohammer()" style="width: 200px; height: 70px; color: yellow; font-size: 20px; background-image: url(./hammers/upgradeshopimages/autohammerOFF.png); background-repeat: no-repeat; background-size: 100%; margin-left: 20px; position: absolute; top: 80%; left: 60%; user-select: none; -webkit-user-select: none; border: none;">Auto Hammer (OFF)</button>
+    
+    </div>
+</body>
+</html>
